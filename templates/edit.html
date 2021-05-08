@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row1 col-6">
+            <a class="btn btn-primary" href="/">Go Home</a>
+            <form action="/shows/{{show.id}}/update" method="POST">
+                {%csrf_token%}
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" name="title" value="{{show.title}}">
+                <label class="form-label" for="desc">Description</label>
+                <textarea class="form-control" type="text" name="description" value="{{show.description}}"></textarea>
+                <label class="form-label" for="release">Release Date</label>
+                <input class="form-control" type="date" name="release_date" value="{{show.release_date|date:'Y-m-d'}}">
+                <label class="form-label" for="network">Network</label>
+                <input class="form-control" type="text" name="network" value="{{show.network}}">
+                <input class="form-control btn btn-primary" type="submit" value="Update">
+            </form>
+            <ul>  
+                {% if messages %}  
+                    {% for message in messages %}
+                        <li>{{message}}</li>
+                {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

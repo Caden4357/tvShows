@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row1 col-6">
+            <div id="show" class="text-info">
+                <a class="btn btn-primary" href="/">Go Home</a>
+                <h1>Tv Show {{this_show.id}}</h1>
+                <h2>Title: {{this_show.title}}</h2>
+                <h2>Network: {{this_show.network}}</h2>
+                <h2>Description: {{this_show.description}}</h2>
+                <h2>Release Date: {{this_show.release_date}}</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
