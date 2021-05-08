@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %} 
+<div class="container">
+    <div class="align-middle">
+        <nav class="navbar navbar-light bg-secondary">
+            <a class="navbar-brand" href="/">Home</a>
+        </nav>
+        <h1 class="pt-3 pb-3">Edit Movie:</h1>
+        <form action="/movies/{{movie.id}}/update" method="POST">
+            {%csrf_token%}
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-control" type="text" name="title" value="{{movie.title}}">
+            <label class="form-label" for="description">Description:</label>
+            <input class="form-control" type="text" name="description" value="{{movie.description}}">
+            <label class="form-label" for="director">Director</label>
+            <select class="form-control" name="director" id="">
+                {%for director in directors%}
+                <option value="director.id">{{director.name}}</option>
+                {%endfor%}
+            </select>
+            <input class="form-control btn btn-success mt-4" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+{% endblock %}

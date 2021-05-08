@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %} 
+<div class="container">
+    <div class="row1 ">
+        <nav class="navbar navbar-light bg-secondary">
+            <a class="navbar-brand" href="/">Home</a>
+        </nav>
+        <h1>Add A Movie!</h1>
+        <form action="movies/create" method="POST">
+            {%csrf_token%}
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" type="text" name="title">
+            <label class="form-label" for="description">Description</label>
+            <input class="form-control" type="text" name="description">
+            <label class="form-label" for="director">Director</label>
+            <select class="form-control custom-select mb-4" name="director" id="">
+                {%for director in directors%}
+                <option value="{{director.id}}">{{director.name}}</option>
+                {%endfor%}
+            </select>
+            <input class="form-control btn btn-success" type="submit" value="Add Movie">
+        </form>
+        <ul>  
+            {% if messages %}  
+                {% for message in messages %}
+                    <li>{{message}}</li>
+            {% endfor %}
+            {% endif %}
+        </ul>
+        <h1>Movie Database</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Director</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {%for movie in movies%}
+            <tr>
+                <td>{{movie.title}}</td>
+                <td>{{movie.description}}</td>
+                <td>{{movie.director.name}}</td>
+                <form action="movies/{{movie.id}}/edit" method="POST">
+                    {%csrf_token%}
+                    <td><input type="submit" name="edit" value="Edit"></td>
+                </form>
+                <form action="movies/{{movie.id}}/destroy" method="POST">
+                    {%csrf_token%}
+                    <td><input type="submit" name="delete" value="Delete"></td>
+                </form>
+            </tr>
+            {%endfor%}
+        </table>
+</div>
+</div>
+    {% endblock %}
